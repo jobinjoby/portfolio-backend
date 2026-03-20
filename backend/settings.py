@@ -29,8 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
@@ -95,18 +94,16 @@ NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL')
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'portfolio_db',      # Your database name
-        'USER': 'root',              # Your MySQL username
-        'PASSWORD': '',  # Your MySQL password
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv('MYSQLDATABASE', 'portfolio_db'),
+        'USER': os.getenv('MYSQLUSER', 'root'),
+        'PASSWORD': os.getenv('MYSQLPASSWORD', ''),
+        'HOST': os.getenv('MYSQLHOST', 'localhost'),
+        'PORT': os.getenv('MYSQLPORT', '3306'),
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -147,3 +144,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-9df15.up.railway.app',
+]
