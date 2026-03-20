@@ -98,11 +98,14 @@ NOTIFICATION_EMAIL = os.getenv('NOTIFICATION_EMAIL')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQLDATABASE', 'portfolio_db'),
+        'NAME': os.getenv('MYSQLDATABASE', 'railway'),
         'USER': os.getenv('MYSQLUSER', 'root'),
         'PASSWORD': os.getenv('MYSQLPASSWORD', ''),
-        'HOST': os.getenv('MYSQLHOST', 'localhost'),
-        'PORT': os.getenv('MYSQLPORT', '3306'),
+        'HOST': os.getenv('MYSQLHOST', 'ballast.proxy.rlwy.net'),
+        'PORT': os.getenv('MYSQLPORT', '53820'),
+        'OPTIONS': {
+            'connect_timeout': 10,
+        },
     }
 }
 # Password validation
